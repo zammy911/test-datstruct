@@ -1,0 +1,18 @@
+[
+  {
+    "pk": 1,
+    "model": "profile.contact",
+    "fields": {
+      "name": "Mykola",
+      "lastname": "Zamkovoi",
+      "date_of_birth": "1980-01-18",
+      "bio": "Born in Kyiv, Ukraine, studied at Liceum Podil. Got Bachelor and later Specialist degree in T.G. Shevchenko Kyiv State University. Now work as freelancer",
+      "contacts": "Twitter: @nickzam",
+      "email":"nickzam@gmail.com",
+      "jabber":"nickzam@jabber.keiv.ua",
+      "skype": "nickzamk",
+      "other_contacts": "http://zam.org.ua"
+    }
+  }
+]
+
