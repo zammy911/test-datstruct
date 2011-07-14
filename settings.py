@@ -3,6 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 TEST_RUNNER = 'tddspry.django.runner.TestSuiteRunner'
+from registration_defaults.settings import *
 
 import os
 import sys
@@ -75,6 +76,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
+    REGISTRATION_TEMPLATE_DIR,
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,6 +100,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -105,4 +109,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'profile',
+    'registration',
 )

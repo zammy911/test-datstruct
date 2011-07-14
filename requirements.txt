@@ -1,5 +1,7 @@
 Django==1.3
 django-nose==0.1.3
+-e hg+https://bitbucket.org/ubernostrum/django-registration@58eef8330b0f23da4645eb01c078621eb3998f39#egg=django_registration-dev
+-e git://github.com/yourcelf/django-registration-defaults.git@575b9312634c27ef1d870483057feabf0589aad7#egg=django_registration_defaults-dev
 nose==1.0.0
 tddspry==0.4-beta
 twill==0.9
