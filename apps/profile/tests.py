@@ -1,5 +1,5 @@
 from django.test.client import Client
-from profile.models import Contact 
+from profile.models import * 
 from django.test import TestCase
 from tddspry.django import TestCase as TddspryTestCase
 from django.contrib.auth.models import User
@@ -30,3 +30,15 @@ class LoginTestCase(TestCase):
         response = self.client.get("/")   
         # check if page has info from fixtures
         self.assertNotEqual(response.content.find('Zamkovoi'), -1)
+
+
+class DbLogTestCase(TestCase):
+    """ Test if sql queries are logged to db  """
+   
+    def test_db_logging(self):
+        queries_num = DbLog.objects.count()
+        response = self.client.get("/admin/")
+        queries_num2 = DbLog.objects.count()
+        self.assertNotEqual(queries_num, queries_num2)
+        query = DbLog.objects.filter().order_by('-added')[0]
+        self.assertNotEqual(unicode(query.sql).find('site'), -1)

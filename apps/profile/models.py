@@ -19,4 +19,11 @@ class Contact(models.Model):
         return u"%s %s" % (self.name, self.lastname)
 
 
+class DbLog(models.Model):
+    """ Model for saving all database requests from middleware """
+    added = models.DateTimeField(auto_now_add=True)
+    sql = models.TextField()
+
+    def __unicode__(self):
+        return unicode(self.sql)
 
