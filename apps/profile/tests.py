@@ -3,6 +3,7 @@ from profile.models import *
 from django.test import TestCase
 from tddspry.django import TestCase as TddspryTestCase
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class ContactTestCase(TestCase):
@@ -42,3 +43,20 @@ class DbLogTestCase(TestCase):
         self.assertNotEqual(queries_num, queries_num2)
         query = DbLog.objects.filter().order_by('-added')[0]
         self.assertNotEqual(unicode(query.sql).find('site'), -1)
+
+
+class ContextSettingsTest(TestCase):
+    """ Test if there are settings vars in context """
+    def setUp(self):
+        #New Client
+        self.client = Client()
+
+    def test_settings_in_context(self):
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'john')
+        user.save()
+        response = self.client.post('/accounts/login/', {'username': 'john', 'password': 'john'})
+        response = self.client.get('/')
+        var_list = list(var for var in dir(settings) if var[:2]!="__")
+        for var in var_list:
+            self.assertEqual(response.context[var], settings.__getattr__(var))
+
